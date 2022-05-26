@@ -1,18 +1,11 @@
-import './App.css';
+import s from './App.module.css';
 import React, { useState, useEffect, useRef } from 'react'
 import { stat } from 'fs';
+import { Display } from './Components/Display';
+import { Increment } from './Components/Increment';
+import { Reset } from './Components/Resset';
+import { FullCounter } from './Components/FullCounter';
 
-type IncrementerType = {
-  state: number
-  inc: () => void
-}
-
-const Incrementer = (props: IncrementerType) => {
-  if (props.state !== 5) { return (<button onClick={props.inc}>inc</button>) }
-  return (<button disabled onClick={props.inc}>inc</button>)
-
-
-}
 
 
 
@@ -29,16 +22,6 @@ function App() {
     localStorage.setItem("counterValue", JSON.stringify(state))
   }, [state])
  
-
-  const getter = () => {
-    let valueAsAString = localStorage.getItem("counterValue")
-    if (valueAsAString) {
-      let newValue = JSON.parse(valueAsAString)
-      setState(newValue)
-  }}
-
-  
-
   const inc = () => {
     if (state <= 4) setState((prev)=>prev+1)
   }
@@ -48,11 +31,8 @@ function App() {
   }
 
   return (
-    <div >
-      {state}
-      <Incrementer inc={inc} state={state} />
-      <button onClick={reset}>reset</button>
-      <button onClick={getter}>getter</button>
+    <div className={s.AppHeader}>
+      <FullCounter state={state} reset={reset} inc={inc}/>
     </div>
   );
 }
