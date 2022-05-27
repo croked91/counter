@@ -5,14 +5,19 @@ import { Display } from './Components/Display';
 import { Increment } from './Components/Increment';
 import { Reset } from './Components/Resset';
 import { FullCounter } from './Components/FullCounter';
+import { Setter } from './Components/Setter';
 
 
 
 
 function App() {
   
-  const [state, setState] = useState<number>(JSON.parse(localStorage.getItem("counterValue") || "0"))
+ 
 
+  const [min, setMin] = useState<number>(JSON.parse(localStorage.getItem("minValue") || "0"))
+  const [max, setMax] = useState<number>(JSON.parse(localStorage.getItem("maxValue") || "0"))
+  const [state, setState] = useState<number>(JSON.parse(localStorage.getItem("counterValue") || "0"))
+  
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("counterValue") || "0")
     setState(data)   
@@ -23,16 +28,30 @@ function App() {
   }, [state])
  
   const inc = () => {
-    if (state <= 4) setState((prev)=>prev+1)
+    if (state <= max) setState((prev)=>prev+1)
   }
 
   const reset = () => {
-    setState(0)
+    setState(min)    
   }
+
+  const setMinValue = (e: number)=> {
+    setMin(e)  
+  }
+  const setMaxValue = (e: number)=> {
+    setMax(e)  
+  }
+
+  const setSettings = () =>{
+    localStorage.setItem("minValue", JSON.stringify(min))
+    localStorage.setItem("maxValue", JSON.stringify(max))
+  }
+
 
   return (
     <div className={s.AppHeader}>
-      <FullCounter state={state} reset={reset} inc={inc}/>
+      <Setter setMinValue={setMinValue} setMaxValue={setMaxValue} setSettings={setSettings} />
+      <FullCounter state={state} reset={reset} inc={inc} max={max}/>
     </div>
   );
 }
