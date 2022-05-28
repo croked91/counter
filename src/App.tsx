@@ -50,7 +50,7 @@ function App() {
 
   return (
     <div className={s.AppHeader}>
-      <Setter setMinValue={setMinValue} setMaxValue={setMaxValue} setSettings={setSettings} />
+      <Setter minValue={min} maxValue={max} setMinValue={setMinValue} setMaxValue={setMaxValue} setSettings={setSettings} />
       <FullCounter state={state} reset={reset} inc={inc} max={max}/>
     </div>
   );

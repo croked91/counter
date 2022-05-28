@@ -15,7 +15,7 @@ type FullCounterType = {
 export const FullCounter = (props: FullCounterType) => {
     return (
         <div className={s.Main}> 
-            <Display state={props.state}/>
+            <Display max={props.max} state={props.state}/>
             <Increment state={props.state} inc={props.inc} max={props.max}/>
             <Reset callback={props.reset}/>
         </div>
