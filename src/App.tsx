@@ -17,6 +17,7 @@ function App() {
   const [min, setMin] = useState<number>(JSON.parse(localStorage.getItem("minValue") || "0"))
   const [max, setMax] = useState<number>(JSON.parse(localStorage.getItem("maxValue") || "0"))
   const [state, setState] = useState<number>(JSON.parse(localStorage.getItem("counterValue") || "0"))
+  let [m, setM] = useState<boolean>(false)
   
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("counterValue") || "0")
@@ -37,21 +38,24 @@ function App() {
 
   const setMinValue = (e: number)=> {
     setMin(e)  
+    setM (false)
   }
   const setMaxValue = (e: number)=> {
     setMax(e)  
+    setM (false)
   }
 
   const setSettings = () =>{
     localStorage.setItem("minValue", JSON.stringify(min))
     localStorage.setItem("maxValue", JSON.stringify(max))
+    setM (true)
   }
 
 
   return (
     <div className={s.AppHeader}>
       <Setter minValue={min} maxValue={max} setMinValue={setMinValue} setMaxValue={setMaxValue} setSettings={setSettings} />
-      <FullCounter min={min} state={state} reset={reset} inc={inc} max={max}/>
+      <FullCounter min={min} state={state} reset={reset} inc={inc} max={max} m={m}/>
     </div>
   );
 }
