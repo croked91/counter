@@ -1,6 +1,6 @@
 # Just a counter
 
-with couple settings: minValue and maxValue. The counter is verify next conditions: values must be >= 0 and maxValue can't be equals to minValue. If the values don't meet the conditions counter is would be disable. 
+with couple settings: minValue and maxValue. The counter is verify next conditions: values must be >= 0 and maxValue can't be equals to minValue. If the values don't meet the conditions counter would be disable. 
 
 ## Available Scripts
 
