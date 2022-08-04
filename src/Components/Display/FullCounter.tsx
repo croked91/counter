@@ -15,7 +15,7 @@ type FullCounterType = {
     m:boolean
     
 }
-sdfsd
+
 export const FullCounter = (props: FullCounterType) => {
     return (
         <div className={s.Main}> 
